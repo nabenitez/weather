@@ -4,8 +4,9 @@ import { Container } from "@mui/material";
 
 export default function Home() {
   return (
-    <>
-      <Container maxWidth="xl">Base app</Container>
-    </>
+    <main>
+      <Container maxWidth="xl"></Container>
+      <Footer updatedAt={new Date()} />
+    </main>
   );
 }
