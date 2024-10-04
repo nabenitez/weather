@@ -5,37 +5,31 @@ import React from "react";
 import { HourlyWeatherCard } from "./hourly-weather-card";
 
 type DailyWeatherData = {
-  dt: number;
-  temp: number;
+  time: string;
+  temperature: number;
   pop: number;
   icon: string;
-  weather: { icon: string }[];
 };
 
-const weatherData: DailyWeatherData[] = [
-  {
-    dt: 1727924400,
-    temp: 24.57,
-    icon: "04n",
-    weather: [
-      {
-        icon: "04n",
-      },
-    ],
-    pop: 0,
-  },
-];
+// TODO: move to service layer
+const formatInput = (data: any): DailyWeatherData[] => {
+  return data.map((item: any) => ({
+    time: new Date(item.dt * 1000).toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    }),
+    temperature: Number(item.temp.toFixed(0)),
+    pop: (item.pop * 100).toFixed(0),
+    icon: item.weather[0]?.icon,
+  }));
+};
 
 export const HourlyWeatherForecast: React.FC<{
-  data?: DailyWeatherData[];
-}> = ({ data = weatherData }) => {
+  data: DailyWeatherData[];
+}> = ({ data }) => {
   const locales = { title: "Next hours" };
-
-  const timeOptions: Intl.DateTimeFormatOptions = {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  };
+  const formattedInput = formatInput(data);
 
   return (
     <Box
@@ -49,7 +43,7 @@ export const HourlyWeatherForecast: React.FC<{
     >
       <Typography
         variant="h6"
-        sx={{ padding: 2, borderBottom: "1px solid #e0e0e0" }}
+        sx={{ padding: 2, borderBottom: "1px solid #e0e0e0", mb: 2 }}
       >
         {locales.title}
       </Typography>
@@ -61,13 +55,13 @@ export const HourlyWeatherForecast: React.FC<{
           overflowX: "auto",
         }}
       >
-        {data.map((data, index) => (
+        {formattedInput.map((hourlyWeather, index) => (
           <HourlyWeatherCard
             key={index}
-            time={new Date(data.dt).toLocaleTimeString("en-US", timeOptions)}
-            temperature={Number(data.temp.toFixed(0))}
-            pop={parseInt(data.pop.toFixed(0)) || 0}
-            icon={data.weather[0]?.icon}
+            time={hourlyWeather.time}
+            temperature={hourlyWeather.temperature}
+            pop={hourlyWeather.pop}
+            icon={hourlyWeather.icon}
           />
         ))}
       </Stack>

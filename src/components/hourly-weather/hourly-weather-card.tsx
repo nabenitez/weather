@@ -22,8 +22,9 @@ export const HourlyWeatherCard = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: 2,
-        width: 100,
+        justifyContent: "space-between",
+        padding: 1,
+        width: "150px",
       }}
     >
       <Typography variant="h5" component="div">
@@ -33,7 +34,7 @@ export const HourlyWeatherCard = ({
         {pop}%
       </Typography>
       <Image src={imgUrl} alt="weather icon" width={50} height={50} />
-      <Typography variant="body2" color="textSecondary">
+      <Typography variant="body2" color="textSecondary" noWrap>
         {time}
       </Typography>
     </Box>
