@@ -3,8 +3,15 @@
 - Global state management
 - Services module
 - Improve input parsers
+- Make BFF if api_key is private (I assumed is not!)
 
 # Run the project
+
+You need to add the API KEY value, with the following name:
+
+```bash
+NEXT_PUBLIC_OPENWEATHERMAP_API_KEY=
+```
 
 ```bash
 npm install
