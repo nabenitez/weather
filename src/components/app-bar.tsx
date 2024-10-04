@@ -15,7 +15,7 @@ export function AppBar() {
         <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
           {locales.title}
         </Typography>
-        <SearchButton />
+        <SearchButton onClick={() => console.log("some")} />
         <RefreshButton
           onClick={() => {
             console.log("invalidating query");
