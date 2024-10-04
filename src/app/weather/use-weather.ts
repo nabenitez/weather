@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY;
 
 const fetchCityCoordinates = async (cityName: string) => {
-  const geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
+  const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
   const response = await axios.get(geoUrl);
   const data = response.data;
 
