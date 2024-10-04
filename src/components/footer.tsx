@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
 interface FooterProps {
-  updatedAt: Date;
+  updatedAt: Date | null;
 }
 
 export const Footer = ({ updatedAt }: FooterProps) => {
@@ -15,6 +15,8 @@ export const Footer = ({ updatedAt }: FooterProps) => {
     minute: "2-digit",
     hour12: false,
   };
+
+  if (!updatedAt) return null;
 
   const formattedDatetime = updatedAt.toLocaleDateString("en-US", options);
 
