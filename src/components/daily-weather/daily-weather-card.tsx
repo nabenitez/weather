@@ -3,8 +3,7 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
 interface DailyWeatherCardProps {
-  day: string;
-  date: string;
+  date: Date;
   description: string;
   highTemp: number;
   lowTemp: number;
@@ -12,7 +11,6 @@ interface DailyWeatherCardProps {
 }
 
 export const DailyWeatherCard: React.FC<DailyWeatherCardProps> = ({
-  day,
   date,
   description,
   highTemp,
@@ -20,6 +18,12 @@ export const DailyWeatherCard: React.FC<DailyWeatherCardProps> = ({
   icon,
 }) => {
   const imgUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+  const formattedDatetime = date.toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  });
+
   return (
     <Box
       sx={{
@@ -34,7 +38,7 @@ export const DailyWeatherCard: React.FC<DailyWeatherCardProps> = ({
         <Image src={imgUrl} alt="weather icon" width={50} height={50} />
         <Box sx={{ marginLeft: 2 }}>
           <Typography variant="body1" component="div">
-            {day}, {date}
+            {formattedDatetime}
           </Typography>
           <Typography variant="body2" color="textSecondary">
             {description}
@@ -42,7 +46,7 @@ export const DailyWeatherCard: React.FC<DailyWeatherCardProps> = ({
         </Box>
       </Box>
       <Typography variant="body1" component="div">
-        {highTemp}° {lowTemp}°
+        {highTemp.toFixed(0)}° {lowTemp.toFixed(0)}°
       </Typography>
     </Box>
   );
