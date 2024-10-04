@@ -4,6 +4,8 @@
 - Services module
 - Improve input parsers
 - Make BFF if api_key is private (I assumed is not!)
+- Unit test major component such as weather
+- Add enriched behavior for search, that means link to the weather feature to render all the data
 
 # Run the project
 
