@@ -39,7 +39,7 @@ export const Weather: React.FC<WeatherProps> = ({ setLastUpdatedAt }) => {
 
   const handleChange = (_: any, newValue: number) => {
     console.log("Selected Tab:", newValue);
-    console.log("Selected City:", cities[newValue]);
+    console.log("Selected City: ", cities[newValue]);
 
     setCurrentCityId(newValue);
     setCurrentCityName(cities[newValue].name);
